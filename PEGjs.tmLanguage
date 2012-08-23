@@ -202,7 +202,7 @@
 		<key>JavascriptBlock</key>
 		<dict>
 			<key>begin</key>
-			<string>({)</string>
+			<string>(\{)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -212,7 +212,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(})</string>
+			<string>(\})</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -225,6 +225,10 @@
 			<string>meta.block.js</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#JavascriptBlock</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>source.js</string>
