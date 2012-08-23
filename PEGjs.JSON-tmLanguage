@@ -83,8 +83,8 @@
     },
     "JavascriptBlock": {
         "name": "meta.block.js",
-        "begin": "({)",
-        "end": "(})",
+        "begin": "(\\{)",
+        "end": "(\\})",
         "beginCaptures": {
           "1": {"name": "punctuation.definition.beginjsblock"}
         },
@@ -92,6 +92,7 @@
           "1": {"name": "punctuation.definition.endjsblock"}
         },
         "patterns": [
+          { "include": "#JavascriptBlock"},
           { "include": "source.js"}
         ]
       },
