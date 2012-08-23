@@ -1,0 +1,132 @@
+{ "name": "PEGjs",
+  "scopeName": "source.pegjs",
+  "fileTypes": ["pegjs"],
+  "patterns": [
+      {"include": "#Comment"},
+  		{
+        "name": "meta.block.productionset",
+        "begin": "([a-zA-Z0-9]+)\\s*(=)",
+        "beginCaptures": {
+          "1": {"name": "entity.name.function"},
+          "2": {"name": "keyword.operator.rule"}
+        },
+        "end": "(?=([a-zA-Z0-9]+)\\s*(=))",
+        "patterns": [
+         {"include": "#Comment"},
+         {
+            "match": "(?:([a-zA-Z0-9as]+)(:))?\\(?([a-zA-Z0-9]+)\\)?",
+            "captures": {
+                "1": { "name": "variable.other" },
+                "2": { "name": "keyword.operator.assign" },
+                "3": { "name": "entity.name.function" }
+            }
+          },
+          {
+            "begin": "\\[",
+            "end": "\\]",
+            "name": "keyword.operator.regex",
+            "patterns": [
+              {
+                "name": "keyword.operator.negate",
+                "match": "\\G\\^"
+              },
+              {
+                "name": "keyword.other.character_class",
+                "match":"\\\\[wWsSdDhH]"
+              },
+              {
+                "match": "((?:\\\\0[0-7]*)|(?:\\\\u[0-9A-F]{1,4})|(?:[a-zA-Z0-9]))(-)((?:\\\\0[0-7]*)|(?:\\\\u[0-9A-F]{1,4})|(?:[a-zA-Z0-9]))",
+                "captures": {
+                    "1": { "name": "support.function.range" },
+                    "2": { "name": "keyword.operator.range" },
+                    "3": { "name": "support.function.range"}
+                }
+              },
+              {
+                "match":"\\\\u[0-9a-fA-F]{1,4}",
+                "name":"constant.character.escape.unicode"
+              },
+              {
+                "match":"\\\\.",
+                "name":"constant.character.escape.untitled"
+              },
+              {
+                "name": "string.unquoted",
+                "match": "."
+              }
+            ]
+          },
+          {
+            "match": "&|!",
+            "name": "keyword.operator.predicate"
+          },
+          {
+            "match": "\\+|\\*|\\?",
+            "name": "keyword.operator.quantifier"
+          },
+          {
+            "match": "/",
+            "name": "keyword.operator.productiondivider"
+          },
+          {"include": "#JavascriptBlock"},
+          {"include": "#SingleQuotedString"},
+          {"include": "#DoubleQuotedString"}
+        ]
+      },
+      {"include": "#JavascriptBlock"}
+  ],
+  "repository":{
+    "Comment":{
+      "name": "comment.pegjs",
+      "begin": "/\\*",
+      "end": "\\*/"
+    },
+    "JavascriptBlock": {
+        "name": "meta.block.js",
+        "begin": "({)",
+        "end": "(})",
+        "beginCaptures": {
+          "1": {"name": "punctuation.definition.beginjsblock"}
+        },
+        "endCaptures": {
+          "1": {"name": "punctuation.definition.endjsblock"}
+        },
+        "patterns": [
+          { "include": "source.js"}
+        ]
+      },
+      "SingleQuotedString": {
+        "begin": "'",
+        "end": "'",
+        "patterns": [
+          {
+            "match":"\\\\u[0-9a-fA-F]{1,4}",
+            "name":"constant.character.escape.unicode"
+          },
+          {
+            "match":"\\\\.",
+            "name":"constant.character.escape.untitled"
+          }
+        ],
+        "name": "string.quoted.single",
+        "description": "A single-quoted string."
+      },
+      "DoubleQuotedString": {
+        "begin": "\"",
+        "end": "\"",
+        "patterns": [
+          {
+            "match":"\\\\u[0-9a-fA-F]{1,4}",
+            "name":"constant.character.escape.unicode"
+          },
+          {
+            "match":"\\\\.",
+            "name":"constant.character.escape.untitled"
+          }
+        ],
+        "name": "string.quoted.double",
+        "description": "A double-quoted string."
+      }
+  },
+  "uuid": "2449a616-1263-49e8-a82b-ae8a604df003"
+}
