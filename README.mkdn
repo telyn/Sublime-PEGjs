@@ -1,7 +1,10 @@
 Sublime Text / TextMate syntax highlighting for PEGjs grammars.
 
-![An example highlighted grammar](https://dl.dropbox.com/u/15887087/Sublime-PEGjs.png)
+Installation
+============
 
 	$ cd "Sublime Text 2/Packages"
 
 	$ git pull git://github.com/nornalbion/Sublime-PEGjs PEGjs
+
+![An example highlighted grammar](https://dl.dropbox.com/u/15887087/Sublime-PEGjs.png)
