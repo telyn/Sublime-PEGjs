@@ -15,6 +15,10 @@
 			<string>#Comment</string>
 		</dict>
 		<dict>
+			<key>include</key>
+			<string>#LineComment</string>
+		</dict>
+		<dict>
 			<key>begin</key>
 			<string>([a-zA-Z0-9]+)\s*(=)</string>
 			<key>beginCaptures</key>
@@ -39,6 +43,10 @@
 				<dict>
 					<key>include</key>
 					<string>#Comment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#LineComment</string>
 				</dict>
 				<dict>
 					<key>captures</key>
@@ -172,6 +180,15 @@
 			<string>\*/</string>
 			<key>name</key>
 			<string>comment.pegjs</string>
+		</dict>
+		<key>LineComment</key>
+		<dict>
+			<key>begin</key>
+			<string>//</string>
+			<key>end</key>
+			<string>$\n?</string>
+			<key>name</key>
+			<string>comment.line.pegjs</string>
 		</dict>
 		<key>DoubleQuotedString</key>
 		<dict>
